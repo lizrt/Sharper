@@ -20,7 +20,7 @@ namespace Example
 		{
 			_name=name;
 		}
-		public int Area()
+		public virtual int Area()
 		{
 			Console.WriteLine("base Area");
 			return 0;
@@ -41,7 +41,7 @@ namespace Example
 		{
 			_sidea=sideA;
 		}
-		public new int Area()
+		public override int Area()
 		{
 			Console.WriteLine("Area of {0}",Name);
 			return _sidea*_sidea;
@@ -71,21 +71,31 @@ namespace Example
 		{
 			_sidea=sideA;
 			_sideb=sideB;
-			Console.WriteLine("rect const");
+			Console.WriteLine("Rectangle constructor");
 		}
-		public new int Area()
+		public override int Area()
 		{
 			Console.WriteLine("Area of {0}",Name);
-			base.Area();
 			return _sidea*_sideb;
 		}
 	}
 	public class Runner
 	{
+
+		public static void PrintArea(Shape s)
+		{
+			Console.WriteLine(s.Area());
+		}
+
 		public static void Main()
 		{
-			Rectangle sq = new Rectangle(3,4);
-			Console.WriteLine(sq.Area());
+			Shape a = new Square(3);
+			Shape b = new Rectangle(4,5);
+			Shape c = new Square(8);
+
+			PrintArea(a);
+			PrintArea(b);
+			PrintArea(c);
 		}
 	}
 }
